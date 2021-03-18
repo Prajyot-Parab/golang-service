@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
-	"github.com/gorilla/mux"
 	"github.com/Prajyot-Parab/golang-service/pkg/employee"
+	"github.com/gorilla/mux"
 )
 
 func homePage(w http.ResponseWriter, r *http.Request) {
@@ -26,6 +27,15 @@ func handleRequests() {
 }
 
 func main() {
+
+	file, err := os.OpenFile("./logs/log.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.SetOutput(file)
+	log.Println("Checking Connection...")
 	employee.CheckConnection()
 	handleRequests()
+	log.Println("Application Running...")
 }

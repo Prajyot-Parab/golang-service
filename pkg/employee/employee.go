@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"log"
 
 	"github.com/gorilla/mux"
 	"gorm.io/driver/postgres"
@@ -35,11 +36,11 @@ func CheckConnection() {
 		panic("Failed to connect to Database")
 	}
 	_ = db
-	fmt.Println("Connected")
+	log.Println("Connected")
 }
 
 func ReturnAllEmployees(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("ReturnAllEmployees endpoint hit")
+	log.Println("ReturnAllEmployees endpoint hit")
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 	db, err := gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
 
@@ -53,7 +54,7 @@ func ReturnAllEmployees(w http.ResponseWriter, r *http.Request) {
 }
 
 func ReturnSingleEmployee(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("ReturnSingleEmployee endpoint hit")
+	log.Println("ReturnSingleEmployee endpoint hit")
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 	db, err := gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
 
@@ -70,7 +71,7 @@ func ReturnSingleEmployee(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateNewEmployee(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("createNewEmployee endpoint hit")
+	log.Println("createNewEmployee endpoint hit")
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 	db, err := gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
 
@@ -88,7 +89,7 @@ func CreateNewEmployee(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteEmployee(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("DeleteEmployee endpoint hit")
+	log.Println("DeleteEmployee endpoint hit")
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 	db, err := gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
 
@@ -106,7 +107,7 @@ func DeleteEmployee(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdateEmployee(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("UpdateEmployee endpoint hit")
+	log.Println("UpdateEmployee endpoint hit")
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 	db, err := gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
 
