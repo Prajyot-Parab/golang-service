@@ -19,6 +19,10 @@ spec:
       containers:
         - env:
             - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-creds
+                  key: db_password
               value: postgres
           image: prajyotparab31904/employee-db:v1
           name: database
@@ -27,10 +31,10 @@ spec:
           resources: {}
           volumeMounts:
             - mountPath: /var/lib/postgresql/data/
-              name: database-claim0
+              name: database-claim
       restartPolicy: Always
       volumes:
-        - name: database-claim0
+        - name: database-claim
           persistentVolumeClaim:
-            claimName: database-claim0
+            claimName: database-claim
 status: {}

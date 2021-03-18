@@ -18,14 +18,26 @@ spec:
     spec:
       containers:
         - env:
-            - name: DB_NAME
-              value: directory
-            - name: DB_PASSWORD
-              value: postgres
             - name: DB_URL
-              value: database
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: db_url
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: db_name
             - name: DB_USER
-              value: postgres
+              valueFrom:
+                secretKeyRef:
+                  name: db-creds
+                  key: db_user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-creds
+                  key: db_password
           image: prajyotparab31904/employee-service:v1
           name: employee-service
           ports:
