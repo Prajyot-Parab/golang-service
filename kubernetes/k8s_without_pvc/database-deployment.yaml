@@ -23,7 +23,6 @@ spec:
                 secretKeyRef:
                   name: db-creds
                   key: db_password
-              value: postgres
           image: prajyotparab31904/employee-db:v1
           name: database
           ports:
