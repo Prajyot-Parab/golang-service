@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  employee-service:
+    restart: always
+    image: prajyotparab31904/employee-service:v1
+    container_name: employee-service
+    volumes:
+      - /root/logs/:/app/logs/
+    ports:
+      - 8080:8080
+    environment:
+      - DB_URL=database
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=directory
+    links:
+      - database:database
+    depends_on:
+      - database
+
+  database:
+    restart: always
+    image: prajyotparab31904/employee-db:v1
+    container_name: database
+    volumes:
+      - /root/database/:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=postgres
+
