@@ -23,6 +23,8 @@ spec:
                 secretKeyRef:
                   name: db-creds
                   key: db_password
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
           image: prajyotparab31904/employee-db:v1
           name: database
           ports:
