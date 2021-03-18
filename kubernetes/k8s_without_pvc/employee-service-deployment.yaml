@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: employee-service
+  name: employee-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employee-service
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: employee-service
+    spec:
+      containers:
+        - env:
+            - name: DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: db_url
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: db_name
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-creds
+                  key: db_user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-creds
+                  key: db_password
+          image: prajyotparab31904/employee-service:v1
+          name: employee-service
+          ports:
+            - containerPort: 8080
+          resources: {}
+      restartPolicy: Always
+status: {}
