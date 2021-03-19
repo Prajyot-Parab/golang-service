@@ -37,10 +37,12 @@ func CheckConnection() {
 	}
 	_ = db
 	log.Println("Connected")
+	fmt.Println("Connected")
 }
 
 func ReturnAllEmployees(w http.ResponseWriter, r *http.Request) {
 	log.Println("ReturnAllEmployees endpoint hit")
+	fmt.Println("ReturnAllEmployees endpoint hit")
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 	db, err := gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
 
@@ -55,6 +57,7 @@ func ReturnAllEmployees(w http.ResponseWriter, r *http.Request) {
 
 func ReturnSingleEmployee(w http.ResponseWriter, r *http.Request) {
 	log.Println("ReturnSingleEmployee endpoint hit")
+	fmt.Println("ReturnSingleEmployee endpoint hit")
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 	db, err := gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
 
@@ -72,6 +75,7 @@ func ReturnSingleEmployee(w http.ResponseWriter, r *http.Request) {
 
 func CreateNewEmployee(w http.ResponseWriter, r *http.Request) {
 	log.Println("createNewEmployee endpoint hit")
+	fmt.Println("createNewEmployee endpoint hit")
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 	db, err := gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
 
@@ -90,6 +94,7 @@ func CreateNewEmployee(w http.ResponseWriter, r *http.Request) {
 
 func DeleteEmployee(w http.ResponseWriter, r *http.Request) {
 	log.Println("DeleteEmployee endpoint hit")
+	fmt.Println("DeleteEmployee endpoint hit")
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 	db, err := gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
 
@@ -108,6 +113,7 @@ func DeleteEmployee(w http.ResponseWriter, r *http.Request) {
 
 func UpdateEmployee(w http.ResponseWriter, r *http.Request) {
 	log.Println("UpdateEmployee endpoint hit")
+	fmt.Println("UpdateEmployee endpoint hit")
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 	db, err := gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
 

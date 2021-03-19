@@ -35,7 +35,9 @@ func main() {
 
 	log.SetOutput(file)
 	log.Println("Checking Connection...")
+	fmt.Println("Checking Connection...")
 	employee.CheckConnection()
 	handleRequests()
 	log.Println("Application Running...")
+	fmt.Println("Application Running...")
 }
